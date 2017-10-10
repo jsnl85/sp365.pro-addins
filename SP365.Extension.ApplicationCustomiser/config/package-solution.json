@@ -1,0 +1,28 @@
+{
+  "$schema": "https://dev.office.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "sp-365-extension-application-customiser-client-side-solution",
+    "title": "SP365 Modern Add-In",
+    "id": "398099f4-e409-4309-8b57-ba1e47e7db97",
+    "version": "1.0.0.0",
+    "iconPath": "images/AppIcon.png",
+    "supportedLocales": [
+      "en-US"
+    ],
+    "skipFeatureDeployment": false,
+    "features": [{
+      "title": "SP365 Extension Application Customizer feature",
+      "description": "A feature that registers sp365.pro functionality on the SharePoint site.",
+      "id": "398099f4-9f44-4681-9143-bd2e774afbfc",
+      "version": "1.0.0.0",
+      "assets": {
+        "elementManifests": [
+          "elements.xml"
+        ]
+      }
+    }]
+  },
+  "paths": {
+    "zippedPackage": "../pkg/SP365.AddIn.sppkg"
+  }
+}

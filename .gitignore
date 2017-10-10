@@ -1,0 +1,13 @@
+node_modules
+bower_components
+.sftpConfig.json
+cgi-bin
+cpanel
+tmp
+logs
+indexed_files
+package-lock.json
+configuration.json
+packages
+Web.*.config
+*.pubxml*

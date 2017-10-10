@@ -1,0 +1,70 @@
+{
+  "title": "Package Solution Extra Task Configuration",
+  "description": "Defines parameters for task which creates the SharePoint Package",
+
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+
+    "baseConfigFile": { "type": "string" },
+    "solution": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "startPage": { "title": "StartPage", "description": "Custom property", "type": "string" },
+        "settingsPage": { "title": "SettingsPage", "description": "Custom property", "type": "string" },
+        "installedEventEndpoint": { "title": "InstalledEventEndpoint", "description": "Custom property", "type": "string" },
+        "uninstallingEventEndpoint": { "title": "UninstallingEventEndpoint", "description": "Custom property", "type": "string" },
+        "upgradedEventEndpoint": { "title": "UpgradedEventEndpoint", "description": "Custom property", "type": "string" },
+        "features": {
+          "type": "array",
+          "description": "If omitted, a feature will be created to contain the components.",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [ "id" ],
+            "properties": {
+              "id": { "title": "ID", "description": "A GUID identifier for this Feature", "type": "string" },
+              "scope": { "title": "Scope", "description": "Custom property", "type": "string" },
+              "hidden": { "title": "Hidden", "description": "Custom property", "type": "boolean" }
+            }
+          }
+        },
+        "appPrincipal": {
+          "title": "AppPrincipal", "description": "Custom property", "type": "object", "additionalProperties": false,
+          "properties": {
+            "remoteWebApplication": {
+              "title": "RemoteWebApplication", "description": "Custom property", "type": "object", "additionalProperties": false,
+              "properties": {
+                "clientId": { "title": "ClientId", "description": "Custom property", "type": "string" }
+              }
+            }
+          }
+        },
+        "appPermissionRequests": {
+          "title": "AppPermissionRequests", "description": "Custom property", "type": "object", "additionalProperties": false,
+          "properties": {
+            "allowAppOnlyPolicy": { "title": "AllowAppOnlyPolicyClientId", "description": "Custom property", "type": "string" },
+            "appPermissionRequest": {
+              "title": "AppPermissionRequest", "description": "Custom property", "type": "object", "additionalProperties": false,
+              "properties": {
+                "scope": { "title": "Scope", "description": "Custom property", "type": "string" },
+                "right": { "title": "Right", "description": "Custom property", "type": "string" }
+              }
+            }
+          }
+        },
+        "remoteEndpoints": {
+          "type": "array", "description": "If omitted, a feature will be created to contain the components.",
+          "items": {
+            "type": "object", "additionalProperties": false, "required": [ "url" ],
+            "properties": {
+              "url": { "title": "URL", "description": "Custom property", "type": "string" }
+            }
+          }
+        }
+      }
+    }
+  }
+}

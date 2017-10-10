@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+    <CustomAction
+        Title="SP365 Extension - Application Customiser"
+        Location="ClientSideExtension.ApplicationCustomizer"
+        ClientSideComponentId="bff4db75-2ec7-49ee-84ea-f9698da91d06"
+        ClientSideComponentProperties="{&quot;companyName&quot;:&quot;sp365.pro&quot;,&quot;uniqueId&quot;:&quot;cdcb95cd&quot;,&quot;version&quot;:&quot;1.0.0.0&quot;}">
+    </CustomAction>
+
+<!--
+    NOTE: Any ScriptLink custom actions have to be deployed via the 'SP365.AddIn.app' package (i.e. which uses CSOM/JSOM to register ScriptLink CustomAction)
+    <CustomAction
+        Title="SP365 Extension - ScriptLink"
+        Location="ScriptLink"
+        ScriptBlock="
+document.write(&#39;&lt;script type=&quot;text/javascript&quot; src=&quot;http://sp365.pro/add-ins/cdcb95cd/cdn/sp365.min.js&quot;&gt;&lt;/&#39;+&#39;script&gt;&#39;);"
+        Sequence="10"
+    >
+    </CustomAction>
+-->
+</Elements>

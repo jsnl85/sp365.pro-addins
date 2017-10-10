@@ -1,0 +1,29 @@
+{
+  "$schema": "../gulp/package-solution-extra.schema.json",
+  
+  "baseConfigFile": "./package-solution.json",
+  "solution": {
+    "startPage": "https://sp365.pro/add-ins/cdcb95cd?{StandardTokens}",
+    "settingsPage": "https://sp365.pro/add-ins/cdcb95cd/settings?{StandardTokens}",
+    "installedEventEndpoint": "https://sp365-aps.azurewebsites.net/Services/AppEventReceiver.svc",
+    "uninstallingEventEndpoint": "https://sp365-aps.azurewebsites.net/Services/AppEventReceiver.svc",
+    "upgradedEventEndpoint": "https://sp365-aps.azurewebsites.net/Services/AppEventReceiver.svc",
+    "features": [{
+      "id": "398099f4-9f44-4681-9143-bd2e774afbfc",
+      "scope": "Site",
+      "hidden": false
+    }],
+    "appPrincipal": {
+      "remoteWebApplication": { "clientId": "*" }
+    },
+    "appPermissionRequests": {
+      "allowAppOnlyPolicy": "true",
+      "appPermissionRequest": { "scope": "http://sharepoint/content/sitecollection", "right": "FullControl" }
+    },
+    "remoteEndpoints": [
+      { "url": "https://sp365.pro" },
+      { "url": "https://sp365-aps.azurewebsites.net" },
+      { "url": "https://sp365.sopeapps.com.au" }
+    ]
+  }
+}

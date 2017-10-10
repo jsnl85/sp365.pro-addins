@@ -1,0 +1,18 @@
+{
+  "$schema": "https://dev.office.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "sp-365-application-customiser-application-customizer": {
+      "components": [
+        {
+          "entrypoint": "./lib/extensions/sp365ApplicationCustomiser/Sp365ApplicationCustomiserApplicationCustomizer.js",
+          "manifest": "./src/extensions/sp365ApplicationCustomiser/Sp365ApplicationCustomiserApplicationCustomizer.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "Sp365ApplicationCustomiserApplicationCustomizerStrings": "lib/extensions/sp365ApplicationCustomiser/loc/{locale}.js"
+  }
+}

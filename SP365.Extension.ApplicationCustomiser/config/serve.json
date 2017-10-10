@@ -1,0 +1,33 @@
+{
+  "$schema": "https://dev.office.com/json-schemas/core-build/serve.schema.json",
+  "port": 4321,
+  "https": true,
+  "serveConfigurations": {
+    "default": {
+      "pageUrl": "https://sp365pro.sharepoint.com/sites/dev/subsite1/SitePages/Forms/ByAuthor.aspx?loadSPFX=true&debugManifestsFile=https://localhost:4321/temp/manifests.js&customActions={\"bff4db75-2ec7-49ee-84ea-f9698da91d06\":{\"location\":\"ClientSideExtension.ApplicationCustomizer\",\"properties\":{\"testMessage\":\"Hello as property!\"}}}",
+      "customActions": {
+        "bff4db75-2ec7-49ee-84ea-f9698da91d06": {
+          "location": "ClientSideExtension.ApplicationCustomizer",
+          "properties": {
+            "companyName": "sp365.pro",
+            "uniqueId": "cdcb95cd",
+            "version": "1.0.0.0"
+          }
+        }
+      }
+    },
+    "sp365ApplicationCustomiser": {
+      "pageUrl": "https://sp365pro.sharepoint.com/sites/dev/subsite1/SitePages/TestApplicationCustomiser.aspx",
+      "customActions": {
+        "bff4db75-2ec7-49ee-84ea-f9698da91d06": {
+          "location": "ClientSideExtension.ApplicationCustomizer",
+          "properties": {
+            "companyName": "sp365.pro",
+            "uniqueId": "cdcb95cd",
+            "version": "1.0.0.0"
+          }
+        }
+      }
+    }
+  }
+}
