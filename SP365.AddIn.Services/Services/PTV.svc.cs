@@ -1,17 +1,11 @@
-﻿using LinkedIn.Api.Client.Core.Profiles;
-using Newtonsoft.Json;
-using Owin;
-using SP365.AddIn.Services.DataAccess.Models;
-using SP365.AddIn.Services.Logic;
+﻿using Owin;
 using System;
-using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Activation;
 using System.ServiceModel.Web;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using System.Web;
 
 namespace SP365.AddIn.Services
 {
@@ -37,9 +31,10 @@ namespace SP365.AddIn.Services
         {
             app.Use((context, next) =>
             {
-                if (context.Request.Path != null && _rxPTVPath.IsMatch(context.Request.Path.Value) == true)
+                string pathWithQuery = ((context.Request.Path != null && string.IsNullOrEmpty(context.Request.Path.Value) == false) ? (context.Request.QueryString != null && string.IsNullOrEmpty(context.Request.QueryString.Value) == false) ? $@"{context.Request.Path.Value}?{context.Request.QueryString.Value}" : context.Request.Path.Value : null);
+                if (string.IsNullOrEmpty(pathWithQuery) == false && _rxPTVPath.IsMatch(pathWithQuery) == true)
                 {
-                    string url = _rxPTVPath.Match(context.Request.Path.Value)?.Groups["url"]?.Value;
+                    string url = _rxPTVPath.Match(pathWithQuery)?.Groups["url"]?.Value;
                     if (string.IsNullOrEmpty(url) == false)
                     {
                         //if (context.Request.User != null && context.Request.User.IsInRole("Employee")) { return context.Response.WriteAsync("You are not authorized to use this resource."); }

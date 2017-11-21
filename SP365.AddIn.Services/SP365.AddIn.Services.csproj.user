@@ -3,7 +3,7 @@
   <PropertyGroup>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort>44370</IISExpressSSLPort>
-    <NameOfLastUsedPublishProfile>sp365-aps.azurewebsites.net</NameOfLastUsedPublishProfile>
+    <NameOfLastUsedPublishProfile>sp365.sopeapps.com.au</NameOfLastUsedPublishProfile>
     <ProfileToSelectInPublishDialog>
     </ProfileToSelectInPublishDialog>
   </PropertyGroup>
