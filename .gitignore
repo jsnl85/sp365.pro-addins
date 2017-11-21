@@ -11,3 +11,8 @@ configuration.json
 packages
 Web.*.config
 *.pubxml*
+/SP365.AddIn/obj
+/.vs
+/SP365.AddIn/bin/Debug
+/SP365.AddIn.Services/bin
+/SP365.AddIn.Services/obj

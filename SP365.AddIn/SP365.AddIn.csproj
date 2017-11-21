@@ -22,7 +22,7 @@
     <WorkflowPartId>{2c76eb2e-8fe1-475d-b5fe-1e764fd2b803}</WorkflowPartId>
     <CspkgPartId>{b48780c4-c2e0-452c-b1d4-abaceb46a3e9}</CspkgPartId>
     <SqlPackagePartId>{c729193b-b65f-41a1-84fe-4b7efd2b021d}</SqlPackagePartId>
-    <ActivePublishProfile>sp365-aps.azurewebsites.net</ActivePublishProfile>
+    <ActivePublishProfile>sp365.sopeapps.com.au</ActivePublishProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>

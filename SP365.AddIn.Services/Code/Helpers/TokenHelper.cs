@@ -1,6 +1,7 @@
 using Microsoft.IdentityModel;
 using Microsoft.IdentityModel.S2S.Protocols.OAuth2;
 using Microsoft.IdentityModel.S2S.Tokens;
+using Microsoft.IdentityModel.SecurityTokenService;
 using Microsoft.SharePoint.Client;
 using Microsoft.SharePoint.Client.EventReceivers;
 using System;
@@ -213,6 +214,26 @@ namespace SP365.AddIn.Services
                 oauth2Response =
                     client.Issue(AcsMetadataParser.GetStsUrl(targetRealm), oauth2Request) as OAuth2AccessTokenResponse;
             }
+            catch (RequestFailedException)
+            {
+                if (!string.IsNullOrEmpty(SecondaryClientSecret))
+                {
+                    oauth2Request =
+                    OAuth2MessageFactory.CreateAccessTokenRequestWithAuthorizationCode(
+                        clientId,
+                        SecondaryClientSecret,
+                        authorizationCode,
+                        redirectUri,
+                        resource);
+
+                    oauth2Response =
+                        client.Issue(AcsMetadataParser.GetStsUrl(targetRealm), oauth2Request) as OAuth2AccessTokenResponse;
+                }
+                else
+                {
+                    throw;
+                }
+            }
             catch (WebException wex)
             {
                 using (StreamReader sr = new StreamReader(wex.Response.GetResponseStream()))
@@ -258,6 +279,19 @@ namespace SP365.AddIn.Services
             {
                 oauth2Response =
                     client.Issue(AcsMetadataParser.GetStsUrl(targetRealm), oauth2Request) as OAuth2AccessTokenResponse;
+            }
+            catch (RequestFailedException)
+            {
+                if (!string.IsNullOrEmpty(SecondaryClientSecret))
+                {
+                    oauth2Request = OAuth2MessageFactory.CreateAccessTokenRequestWithRefreshToken(clientId, SecondaryClientSecret, refreshToken, resource);
+                    oauth2Response =
+                        client.Issue(AcsMetadataParser.GetStsUrl(targetRealm), oauth2Request) as OAuth2AccessTokenResponse;
+                }
+                else
+                {
+                    throw;
+                }
             }
             catch (WebException wex)
             {
@@ -305,6 +339,21 @@ namespace SP365.AddIn.Services
             {
                 oauth2Response =
                     client.Issue(AcsMetadataParser.GetStsUrl(targetRealm), oauth2Request) as OAuth2AccessTokenResponse;
+            }
+            catch (RequestFailedException)
+            {
+                if (!string.IsNullOrEmpty(SecondaryClientSecret))
+                {
+                    oauth2Request = OAuth2MessageFactory.CreateAccessTokenRequestWithClientCredentials(clientId, SecondaryClientSecret, resource);
+                    oauth2Request.Resource = resource;
+
+                    oauth2Response =
+                        client.Issue(AcsMetadataParser.GetStsUrl(targetRealm), oauth2Request) as OAuth2AccessTokenResponse;
+                }
+                else
+                {
+                    throw;
+                }
             }
             catch (WebException wex)
             {
@@ -660,11 +709,11 @@ namespace SP365.AddIn.Services
         //
         // Hosted add-in configuration
         //
-        private static readonly string ClientId = string.IsNullOrEmpty(WebConfigurationManager.AppSettings.Get("ClientId")) ? WebConfigurationManager.AppSettings.Get("HostedAppName") : WebConfigurationManager.AppSettings.Get("ClientId");
+        private static readonly string ClientId = ((string.IsNullOrEmpty(WebConfigurationManager.AppSettings["Auth.SP365AddIn.AppId"]) == false) ? WebConfigurationManager.AppSettings["Auth.SP365AddIn.AppId"] : (string.IsNullOrEmpty(WebConfigurationManager.AppSettings["ClientId"]) == false) ? WebConfigurationManager.AppSettings["ClientId"] : WebConfigurationManager.AppSettings.Get("HostedAppName"));
         private static readonly string IssuerId = string.IsNullOrEmpty(WebConfigurationManager.AppSettings.Get("IssuerId")) ? ClientId : WebConfigurationManager.AppSettings.Get("IssuerId");
         private static readonly string HostedAppHostNameOverride = WebConfigurationManager.AppSettings.Get("HostedAppHostNameOverride");
         private static readonly string HostedAppHostName = WebConfigurationManager.AppSettings.Get("HostedAppHostName");
-        private static readonly string ClientSecret = string.IsNullOrEmpty(WebConfigurationManager.AppSettings.Get("ClientSecret")) ? WebConfigurationManager.AppSettings.Get("HostedAppSigningKey") : WebConfigurationManager.AppSettings.Get("ClientSecret");
+        private static readonly string ClientSecret = ((string.IsNullOrEmpty(WebConfigurationManager.AppSettings["Auth.SP365AddIn.Secret"]) == false) ? WebConfigurationManager.AppSettings["Auth.SP365AddIn.Secret"] : (string.IsNullOrEmpty(WebConfigurationManager.AppSettings["ClientSecret"]) == false) ? WebConfigurationManager.AppSettings["ClientSecret"] : WebConfigurationManager.AppSettings.Get("HostedAppSigningKey"));
         private static readonly string SecondaryClientSecret = WebConfigurationManager.AppSettings.Get("SecondaryClientSecret");
         private static readonly string Realm = WebConfigurationManager.AppSettings.Get("Realm");
         private static readonly string ServiceNamespace = WebConfigurationManager.AppSettings.Get("Realm");

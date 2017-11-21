@@ -3,8 +3,9 @@
   <PropertyGroup>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort>44370</IISExpressSSLPort>
-    <NameOfLastUsedPublishProfile>sp365.sopeapps.com.au</NameOfLastUsedPublishProfile>
-    <ProfileToSelectInPublishDialog>sp365.sopeapps.com.au</ProfileToSelectInPublishDialog>
+    <NameOfLastUsedPublishProfile>sp365-aps.azurewebsites.net</NameOfLastUsedPublishProfile>
+    <ProfileToSelectInPublishDialog>
+    </ProfileToSelectInPublishDialog>
   </PropertyGroup>
   <ProjectExtensions>
     <VisualStudio>

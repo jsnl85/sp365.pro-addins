@@ -21,5 +21,6 @@
   <RemoteEndpoints>
     <RemoteEndpoint Url="https://sp365.pro" />
     <RemoteEndpoint Url="https://sp365-aps.azurewebsites.net" />
+    <RemoteEndpoint Url="https://sp365.sopeapps.com.au" />
   </RemoteEndpoints>
 </App>

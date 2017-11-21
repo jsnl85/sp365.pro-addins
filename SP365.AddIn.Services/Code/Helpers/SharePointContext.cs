@@ -5,7 +5,6 @@ using System;
 using System.Net;
 using System.Security.Principal;
 using System.Web;
-using System.Web.Configuration;
 
 namespace SP365.AddIn.Services
 {

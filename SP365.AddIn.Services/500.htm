@@ -1,0 +1,28 @@
+<!doctype html>
+<title>500 Page</title>
+<style>
+  body { text-align: center; padding: 150px; }
+  h1 { font-size: 50px; }
+  body { font: 20px Helvetica, sans-serif; color: #333; }
+  article { display: block; text-align: left; width: 650px; margin: 0 auto; }
+  a { color: #dc8100; text-decoration: none; }
+  a:hover { color: #333; text-decoration: none; }
+  #error, .error { color: #f00; }
+</style>
+<article>
+	<h1>Oops, there is a problem!</h1>
+    <div>
+        <p id="error" class="error"></p>
+    </div>
+	<div>
+		<p>Please go to our website at <a href="https://sp365.pro">https://sp365.pro</a> to find the resources you're looking for. Alternatively, you can always <a href="mailto:jsnl85@gmail.com">contact us</a> to let us know how you reached this page.</p>
+		<p>&mdash; sp365.pro</p>
+	</div>
+</article>
+<script type="text/javascript">
+    (function(){
+        var getUrlParam = function(paramName, url, caseInsensitiveQ) { var ret = null; if (caseInsensitiveQ == undefined) { caseInsensitiveQ = true; } var params = (url||'').split(/[&||?]/); if (url == undefined && window.location.search) { var u = window.location.search.substring(1), p = u.split(/[&||?]/); if (p.length > 0) { params = params.concat(p); } } if (url == undefined && window.location.hash) { var u = ((window.location.hash||'')+'').replace(/^[#][!]?[#]?/gi,''), p = u.split(/[&||?]/); if (p.length > 0) { params = params.concat(p); } } for (var i = 0; i < params.length; i += 1) { var p = (params[i]||'').split('='), key = decodeURIComponent(p[0]||''), val = decodeURIComponent(p[1]||''); if (caseInsensitiveQ) { if (key.toLowerCase() == (paramName||'').toLowerCase()) { ret = val; break; } } else { if (key == paramName) { ret = val; break; } } } return ret; }
+        var elError = document.getElementById('error'), errorText = getUrlParam('aspxerror');
+        elError.innerText = (errorText||'We\'ve had an unexpected error.').replace(/[\s+]/gi,' ');
+    })();
+</script>

@@ -1,0 +1,16 @@
+﻿Steps to generate the migration CS file
+1) Open Package Manager Console and write the following commands
+# Make sure the EntityFramework is installed
+#Install-Package EntityFramework -IncludePrerelease
+#
+# NOT NEEDED
+# This creates the Configurations.cs class, which we can then edit
+Enable-Migrations -StartUpProjectName SP365.AddIn.Services -ContextTypeName SP365.AddIn.Services.DataAccess.ApplicationDbContext -ProjectName:SP365.AddIn.Services -MigrationsDirectory:Code\DataAccess\Configuration\Migrations\ApplicationDb -ConnectionStringName:DefaultConnection
+#
+# This creates the default DbMigration Class file, to generate all Tables/Columns
+Add-Migration Initial -ConfigurationTypeName:'SP365.AddIn.Services.DataAccess.Configuration.ApplicationDbConfiguration' -StartUpProjectName:SP365.AddIn.Services -ProjectName:SP365.AddIn.Services -ConnectionStringName:DefaultConnection
+Update-database -ConfigurationTypeName:'SP365.AddIn.Services.DataAccess.Configuration.ApplicationDbConfiguration' -Verbose -StartUpProjectName:SP365.AddIn.Services -ProjectName:SP365.AddIn.Services -ConnectionStringName:DefaultConnection
+#
+# This creates an additional DbMigration classes
+Add-Migration "Migration_$([DateTime]::UtcNow.ToString('yyyyMMddhhmmss'))" -ConfigurationTypeName:'SP365.AddIn.Services.DataAccess.Configuration.ApplicationDbConfiguration' -StartUpProjectName:SP365.AddIn.Services -ProjectName:SP365.AddIn.Services -ConnectionStringName:DefaultConnection
+Update-database -ConfigurationTypeName:'SP365.AddIn.Services.DataAccess.Configuration.ApplicationDbConfiguration' -Verbose -StartUpProjectName:SP365.AddIn.Services -ProjectName:SP365.AddIn.Services -ConnectionStringName:DefaultConnection
